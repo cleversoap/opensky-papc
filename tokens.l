@@ -10,6 +10,8 @@ extern "C" int yywrap() { }
 %%
 
 [ \t\n]			;
+"Function"  return TOKEN(TFUNCTION);
+"endFunction" return TOKEN(TENDFUNCTION);
 [a-zA-Z_][a-zA-Z0-9_]*	SAVE_TOKEN; return TIDENTIFIER;
 [0-9]+\.[0-9]*		SAVE_TOKEN; return TDOUBLE;
 [0-9]+			SAVE_TOKEN; return TINTEGER;

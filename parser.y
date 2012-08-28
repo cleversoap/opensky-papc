@@ -23,6 +23,7 @@
 // Define our terminal symbols (tokens). This should match our tokens.l lex file.
 // We also define the node type they represent.
 %token <string> TIDENTIFIER TINTEGER TDOUBLE
+%token <token> TFUNCTION TENDFUNCTION
 %token <token> TCEQ TCNE TCLT TCLE TCGT TCGE TEQUAL
 %token <token> TLPAREN TRPAREN TLBRACE TRBRACE TCOMMA TDOT
 %token <token> TPLUS TMINUS TMUL TDIV
@@ -57,16 +58,16 @@ stmt : var_decl | func_decl
      | expr { $$ = new NExpressionStatement(*$1); }
      ;
 
-block : TLBRACE stmts TRBRACE { $$ = $2; }
-      | TLBRACE TRBRACE { $$ = new NBlock(); }
-      ;
+block   : TRPAREN stmts TENDFUNCTION { $$ = $2 }
+        | TRPAREN TENDFUNCTION { $$ = new NBlock(); }
+        ;
 
 var_decl : ident ident { $$ = new NVariableDeclaration(*$1, *$2); }
 	 | ident ident TEQUAL expr { $$ = new NVariableDeclaration(*$1, *$2, $4); }
          ;
 
-func_decl : ident ident TLPAREN func_decl_args TRPAREN block
-		{ $$ = new NFunctionDeclaration(*$1, *$2, *$4, *$6); delete $4; }
+func_decl : ident TFUNCTION ident TLPAREN func_decl_args block
+		{ $$ = new NFunctionDeclaration(*$1, *$3, *$5, *$6); delete $5; }
 	  ;
 
 func_decl_args : /*blank*/ { $$ = new VariableList(); }
