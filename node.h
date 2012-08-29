@@ -121,3 +121,10 @@ class NFunctionDeclaration : public NStatement
 			type(type), id(id), arguments(arguments), block(block) {}
 		virtual llvm::Value* codeGen(CodeGenContext &context);
 };
+
+class NEventDeclaration : public NFunctionDeclaration
+{
+    public:
+        NEventDeclaration(const NIdentifier &id, const VariableList &arguments, NBlock &block)
+        : NFunctionDeclaration(NIdentifier("void"), id, arguments, block) { }
+};

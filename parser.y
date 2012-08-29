@@ -24,6 +24,7 @@
 // We also define the node type they represent.
 %token <string> TIDENTIFIER TINTEGER TDOUBLE
 %token <token> TFUNCTION TENDFUNCTION
+%token <token> TEVENT TENDEVENT
 %token <token> TCEQ TCNE TCLT TCLE TCGT TCGE TEQUAL
 %token <token> TLPAREN TRPAREN TLBRACE TRBRACE TCOMMA TDOT
 %token <token> TPLUS TMINUS TMUL TDIV
@@ -60,15 +61,21 @@ stmt : var_decl | func_decl
 
 block   : TRPAREN stmts TENDFUNCTION { $$ = $2 }
         | TRPAREN TENDFUNCTION { $$ = new NBlock(); }
+        | TRPAREN stmts TENDEVENT { $$ = $2 }
+        | TRPAREN TENDEVENT { $$ = new NBlock(); }
         ;
 
 var_decl : ident ident { $$ = new NVariableDeclaration(*$1, *$2); }
 	 | ident ident TEQUAL expr { $$ = new NVariableDeclaration(*$1, *$2, $4); }
          ;
 
-func_decl : ident TFUNCTION ident TLPAREN func_decl_args block
-		{ $$ = new NFunctionDeclaration(*$1, *$3, *$5, *$6); delete $5; }
-	  ;
+func_decl   : ident TFUNCTION ident TLPAREN func_decl_args block
+		        { $$ = new NFunctionDeclaration(*$1, *$3, *$5, *$6); delete $5; }
+            | TFUNCTION ident TLPAREN func_decl_args block
+                { $$ = new NFunctionDeclaration(NIdentifier("void"), *$2, *$4, *$5); delete $4; }
+            | TEVENT ident TLPAREN func_decl_args block
+                { $$ = new NEventDeclaration(*$2, *$4, *$5); delete $4; }
+	        ;
 
 func_decl_args : /*blank*/ { $$ = new VariableList(); }
 	       | var_decl { $$ = new VariableList(); $$->push_back($<var_decl>1); }

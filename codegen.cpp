@@ -43,7 +43,11 @@ GenericValue CodeGenContext::runCode()
 // Returns an LLVM type based on the identifier
 static const Type* typeOf(const NIdentifier &type)
 {
-	if (type.name.compare("int") == 0 || type.name.compare("Int") == 0)
+    if (type.name.compare("void") == 0)
+    {
+        return Type::getVoidTy(getGlobalContext());
+    }
+    else if (type.name.compare("int") == 0 || type.name.compare("Int") == 0)
 	{
 		return Type::getInt64Ty(getGlobalContext());
 	}
@@ -185,6 +189,7 @@ Value* NVariableDeclaration::codeGen(CodeGenContext &context)
 
 Value* NFunctionDeclaration::codeGen(CodeGenContext &context)
 {
+    std::cout << "Generating code for function " << typeOf(type) << std::endl;
 	vector<const Type*> argTypes;
 	VariableList::const_iterator it;
 	for (it = arguments.begin(); it != arguments.end(); it++)
