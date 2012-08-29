@@ -118,7 +118,7 @@ class NFunctionDeclaration : public NStatement
 		VariableList arguments;
 		NBlock &block;
 		NFunctionDeclaration(const NIdentifier &type, const NIdentifier &id, const VariableList &arguments, NBlock &block) :
-			type(type), id(id), arguments(arguments), block(block) {}
+			type(type), id(id), arguments(arguments), block(block) {printf("FUNC_DEC");}
 		virtual llvm::Value* codeGen(CodeGenContext &context);
 };
 
@@ -126,5 +126,5 @@ class NEventDeclaration : public NFunctionDeclaration
 {
     public:
         NEventDeclaration(const NIdentifier &id, const VariableList &arguments, NBlock &block)
-        : NFunctionDeclaration(NIdentifier("void"), id, arguments, block) { }
+        : NFunctionDeclaration(*(new NIdentifier("void")), id, arguments, block) { }
 };

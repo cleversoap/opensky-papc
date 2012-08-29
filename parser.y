@@ -72,7 +72,7 @@ var_decl : ident ident { $$ = new NVariableDeclaration(*$1, *$2); }
 func_decl   : ident TFUNCTION ident TLPAREN func_decl_args block
 		        { $$ = new NFunctionDeclaration(*$1, *$3, *$5, *$6); delete $5; }
             | TFUNCTION ident TLPAREN func_decl_args block
-                { $$ = new NFunctionDeclaration(NIdentifier("void"), *$2, *$4, *$5); delete $4; }
+                { $$ = new NFunctionDeclaration(*(new NIdentifier("void")), *$2, *$4, *$5); delete $4; }
             | TEVENT ident TLPAREN func_decl_args block
                 { $$ = new NEventDeclaration(*$2, *$4, *$5); delete $4; }
 	        ;
