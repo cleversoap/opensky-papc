@@ -129,7 +129,7 @@ class NEventDeclaration : public NFunctionDeclaration
         : NFunctionDeclaration(*(new NIdentifier("void")), id, arguments, block) { }
 };
 
-class NReturn : public NExpression
+class NReturn : public NStatement
 {
     public:
         NExpression &expression;

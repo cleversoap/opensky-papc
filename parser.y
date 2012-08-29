@@ -58,6 +58,7 @@ stmts : stmt { $$ = new NBlock(); $$->statements.push_back($<stmt>1); }
 
 stmt : var_decl | func_decl
      | expr { $$ = new NExpressionStatement(*$1); }
+     | TRETURN expr { $$ = new NReturn(*$2); }
      ;
 
 block   : TRPAREN stmts TENDFUNCTION { $$ = $2 }
@@ -96,7 +97,6 @@ expr : ident TEQUAL expr { $$ = new NAssignment(*$<ident>1, *$3); }
      | numeric
      | expr comparison expr { $$ = new NBinaryOperator(*$1, $2, *$3); }
      | TLPAREN expr TRPAREN { $$ = $2; }
-     | TRETURN expr { $$ = new NReturn(*$2); }
      ;
 
 call_args : /*blank*/ { $$ = new ExpressionList(); }
