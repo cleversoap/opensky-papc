@@ -25,6 +25,7 @@
 %token <string> TIDENTIFIER TINTEGER TDOUBLE
 %token <token> TFUNCTION TENDFUNCTION
 %token <token> TEVENT TENDEVENT
+%token <token> TRETURN
 %token <token> TCEQ TCNE TCLT TCLE TCGT TCGE TEQUAL
 %token <token> TLPAREN TRPAREN TLBRACE TRBRACE TCOMMA TDOT
 %token <token> TPLUS TMINUS TMUL TDIV
@@ -49,7 +50,7 @@
 %%
 
 program : stmts { programBlock = $1; }
-	;
+	    ;
 
 stmts : stmt { $$ = new NBlock(); $$->statements.push_back($<stmt>1); }
       | stmts stmt { $1->statements.push_back($<stmt>2); }
@@ -65,9 +66,9 @@ block   : TRPAREN stmts TENDFUNCTION { $$ = $2 }
         | TRPAREN TENDEVENT { $$ = new NBlock(); }
         ;
 
-var_decl : ident ident { $$ = new NVariableDeclaration(*$1, *$2); }
-	 | ident ident TEQUAL expr { $$ = new NVariableDeclaration(*$1, *$2, $4); }
-         ;
+var_decl    : ident ident { $$ = new NVariableDeclaration(*$1, *$2); }
+	        | ident ident TEQUAL expr { $$ = new NVariableDeclaration(*$1, *$2, $4); }
+            ;
 
 func_decl   : ident TFUNCTION ident TLPAREN func_decl_args block
 		        { $$ = new NFunctionDeclaration(*$1, *$3, *$5, *$6); delete $5; }
@@ -95,6 +96,7 @@ expr : ident TEQUAL expr { $$ = new NAssignment(*$<ident>1, *$3); }
      | numeric
      | expr comparison expr { $$ = new NBinaryOperator(*$1, $2, *$3); }
      | TLPAREN expr TRPAREN { $$ = $2; }
+     | TRETURN expr { $$ = new NReturn(*$2); }
      ;
 
 call_args : /*blank*/ { $$ = new ExpressionList(); }

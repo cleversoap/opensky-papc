@@ -128,3 +128,11 @@ class NEventDeclaration : public NFunctionDeclaration
         NEventDeclaration(const NIdentifier &id, const VariableList &arguments, NBlock &block)
         : NFunctionDeclaration(*(new NIdentifier("void")), id, arguments, block) { }
 };
+
+class NReturn : public NExpression
+{
+    public:
+        NExpression &expression;
+        NReturn(NExpression &expression) : expression(expression) {}
+        virtual llvm::Value* codeGen(CodeGenContext &context);
+};

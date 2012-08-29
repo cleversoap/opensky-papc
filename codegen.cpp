@@ -208,9 +208,14 @@ Value* NFunctionDeclaration::codeGen(CodeGenContext &context)
 	}
 
 	block.codeGen(context);
-	ReturnInst::Create(getGlobalContext(), bblock);
+	// ReturnInst::Create(getGlobalContext(), bblock);
 
 	context.popBlock();
 	std::cout << "Creating function:\t" << id.name << std::endl;
 	return function;
+}
+
+Value* NReturn::codeGen(CodeGenContext &context)
+{
+    return ReturnInst::Create(getGlobalContext(), expression.codeGen(context), context.currentBlock());
 }

@@ -10,6 +10,7 @@ extern "C" int yywrap() { }
 %%
 
 [ \t\n]			        ;
+"return"                return TOKEN(TRETURN);
 "Event"                 return TOKEN(TEVENT);
 "endEvent"              return TOKEN(TENDEVENT);
 "Function"              return TOKEN(TFUNCTION);
