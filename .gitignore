@@ -3,3 +3,4 @@ parser.*pp
 tokens.*pp
 *~
 parser
+*.psc
