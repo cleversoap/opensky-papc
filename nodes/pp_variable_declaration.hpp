@@ -1,3 +1,6 @@
+#ifndef PAP_NODES_PPVARIABLEDECLARATION_HPP_
+#define PAP_NODES_PPVARIABLEDECLARATION_HPP_
+
 #include <vector>
 
 #include "pp_statement.hpp"
@@ -21,3 +24,5 @@ class PPVariableDeclaration : public PPStatement
         : type(type), id(id), assignmentExpression(assignmentExpression)
         {}
 };
+
+#endif // PAP_NODES_PPVARIABLEDECLARATION_HPP_

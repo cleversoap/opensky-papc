@@ -1,3 +1,6 @@
+#ifndef PAP_NODES_PPBINARYOPERATOR_HPP_
+#define PAP_NODES_PPBINARYOPERATOR_HPP_
+
 #include "pp_expression.hpp"
 
 class PPBinaryOperator : public PPExpression
@@ -11,3 +14,5 @@ class PPBinaryOperator : public PPExpression
         : lhs(lhs), rhs(rhs), op(op)
         {}
 };
+
+#endif // PAP_NODES_PPBINARYOPERATOR_HPP_

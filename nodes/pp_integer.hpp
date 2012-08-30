@@ -1,3 +1,6 @@
+#ifndef PAP_NODES_PPINTEGER_HPP_
+#define PAP_NODES_PPINTEGER_HPP_
+
 #include "pp_expression.h"
 
 class PPInteger : public PPExpression
@@ -10,3 +13,5 @@ class PPInteger : public PPExpression
         : value(value)
         {}
 };
+
+#endif // PAP_NODES_PPINTEGER_HPP_

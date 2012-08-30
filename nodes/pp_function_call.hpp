@@ -1,3 +1,6 @@
+#ifndef PAP_NODES_PPFUNCTIONCALL_HPP_
+#define PAP_NODES_PPFUNCTIONCALL_HPP_
+
 #include "pp_expression.hpp"
 #include "pp_identifier.hpp"
 
@@ -15,3 +18,5 @@ class PPFunctionCall : public PPExpression
         : id(id)
         {}
 };
+
+#endif // PAP_NODES_PPFUNCTIONCALL_HPP_

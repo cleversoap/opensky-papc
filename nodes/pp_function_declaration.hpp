@@ -1,3 +1,6 @@
+#ifndef PAP_NODES_PPFUNCTIONDECLARATION_HPP_
+#define PAP_NODES_PPFUNCTIONDECLARATION_HPP_
+
 #include "pp_statement.hpp"
 #include "pp_identifier.hpp"
 #include "pp_variable_declaration.hpp"
@@ -15,3 +18,5 @@ class PPFunctionDeclaration : public PPStatement
         : type(type), id(id), arguments(arguments), block(block)
         {}
 }
+
+#endif // PAP_NODES_PPFUNCTIONDECLARATION_HPP_
