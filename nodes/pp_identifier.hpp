@@ -3,7 +3,7 @@
 
 #include <string>
 
-#include "pp_expression.h"
+#include "pp_expression.hpp"
 
 class PPIdentifier : public PPExpression
 {

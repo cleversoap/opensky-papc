@@ -17,6 +17,6 @@ class PPFunctionDeclaration : public PPStatement
         PPFunctionDeclaration(const PPIdentifier &type, const PPIdentifier &id, const PPVariableDeclaration::VariableList &arguments, PPBlock &block)
         : type(type), id(id), arguments(arguments), block(block)
         {}
-}
+};
 
 #endif // PAP_NODES_PPFUNCTIONDECLARATION_HPP_

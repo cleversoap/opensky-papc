@@ -3,11 +3,12 @@
 
 #include <vector>
 
-#include "pp_node.h"
+#include "pp_node.hpp"
 
 class PPExpression : public PPNode
 {
-    typedef std::vector<PPExpression*> ExpressionList;
+    public:
+        typedef std::vector<PPExpression*> ExpressionList;
 };
 
 #endif

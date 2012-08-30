@@ -7,4 +7,4 @@ class PPNode
         virtual ~PPNode();
 };
 
-#endif PAP_NODES_PPNODE_HPP_
+#endif // PAP_NODES_PPNODE_HPP_

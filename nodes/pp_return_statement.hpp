@@ -4,7 +4,7 @@
 #include "pp_statement.hpp"
 #include "pp_expression.hpp"
 
-class PPReturnStatement : public NStatement
+class PPReturnStatement : public PPStatement
 {
     public:
         PPExpression &expression;

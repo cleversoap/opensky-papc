@@ -9,9 +9,9 @@
 
 class PPVariableDeclaration : public PPStatement
 {
-    typedef std::vector<PPVariableDeclaration*> VariableList;
-    
     public:
+        typedef std::vector<PPVariableDeclaration*> VariableList;
+    
         const PPIdentifier &type;
         PPIdentifier &id;
         PPExpression* assignmentExpression;
