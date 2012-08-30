@@ -1,7 +1,7 @@
-#include "ppstatement.hpp"
-#include "ppidentifier.hpp"
-#include "ppvariabledeclaration.hpp"
-#include "ppblock.hpp"
+#include "pp_statement.hpp"
+#include "pp_identifier.hpp"
+#include "pp_variable_declaration.hpp"
+#include "pp_block.hpp"
 
 class PPFunctionDeclaration : public PPStatement
 {

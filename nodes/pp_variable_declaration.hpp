@@ -1,8 +1,8 @@
 #include <vector>
 
-#include "ppstatement.hpp"
-#include "ppexpression.hpp"
-#include "ppidentifier.hpp"
+#include "pp_statement.hpp"
+#include "pp_expression.hpp"
+#include "pp_identifier.hpp"
 
 class PPVariableDeclaration : public PPStatement
 {

@@ -1,7 +1,7 @@
-#include "ppfunctiondeclaration.hpp"
-#include "ppvariabledeclaration.hpp"
-#include "ppidentifier.hpp"
-#include "ppblock.hpp"
+#include "pp_function_declaration.hpp"
+#include "pp_variable_declaration.hpp"
+#include "pp_identifier.hpp"
+#include "pp_block.hpp"
 
 class PPEventDeclaration : public PPFunctionDeclaration
 {
